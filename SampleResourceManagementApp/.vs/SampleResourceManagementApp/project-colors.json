@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "84086907-2dc9-4114-a41f-25255c4b7e28": {
+      "ProjectGuid": "84086907-2dc9-4114-a41f-25255c4b7e28",
+      "DisplayName": "SampleResourceManagementApp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

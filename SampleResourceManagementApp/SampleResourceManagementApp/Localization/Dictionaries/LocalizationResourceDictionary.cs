@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SampleResourceManagementApp.Dictionaries
+namespace SampleResourceManagementApp.Localization.Dictionaries
 {
     public class LocalizationResourceDictionary: Dictionary<Type, LocalizationResource>
     {

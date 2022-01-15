@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SampleResourceManagementApp.LocalizationOptionConfigurations
+namespace SampleResourceManagementApp.Localization.LocalizationOptionConfigurations
 {
     public class FrameWorkLocalizationOptions
     {

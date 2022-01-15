@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace SampleResourceManagementApp.Collections
+namespace SampleResourceManagementApp.Localization.Collections
 {
     /// <summary>
     /// Extends <see cref="T:System.Collections.Generic.IList`1" /> to add restriction a specific base type.
