@@ -1,4 +1,7 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using SampleResourceManagementApp.Localization.ResourceFiles
+@inject IHtmlLocalizer<SampleResourceManagementAppResource> L
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -7,4 +10,5 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p class="alert alert-success offset-3 col-6">@L["IndexPageAlertTestMessage"]</p>
 </div>

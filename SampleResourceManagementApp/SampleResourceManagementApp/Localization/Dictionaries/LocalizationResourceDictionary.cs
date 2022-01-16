@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using SampleResourceManagementApp.Localization.Dictionaries.DictionariesExtensions;
+using SampleResourceManagementApp.Localization.LocalizationResources;
 
 namespace SampleResourceManagementApp.Localization.Dictionaries
 {
@@ -13,9 +15,7 @@ namespace SampleResourceManagementApp.Localization.Dictionaries
         public LocalizationResource Add(Type resourceType, string defaultCultureName = null)
         {
             if (ContainsKey(resourceType))
-            {
-                throw new AbpException("This resource is already added before: " + resourceType.AssemblyQualifiedName);
-            }
+                throw new Exception("This resource is already added before: " + resourceType.AssemblyQualifiedName);
 
             return base[resourceType] = new LocalizationResource(resourceType, defaultCultureName);
         }
@@ -23,7 +23,7 @@ namespace SampleResourceManagementApp.Localization.Dictionaries
         public LocalizationResource Get<TResource>()
         {
             Type typeFromHandle = typeof(TResource);
-            return this.GetOrDefault(typeFromHandle) ?? throw new AbpException("Can not find a resource with given type: " + typeFromHandle.AssemblyQualifiedName);
+            return this.GetOrDefault(typeFromHandle) ?? throw new Exception("Can not find a resource with given type: " + typeFromHandle.AssemblyQualifiedName);
         }
     }
 }

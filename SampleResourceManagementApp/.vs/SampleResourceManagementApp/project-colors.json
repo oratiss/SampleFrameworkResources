@@ -5,6 +5,11 @@
       "ProjectGuid": "84086907-2dc9-4114-a41f-25255c4b7e28",
       "DisplayName": "SampleResourceManagementApp",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

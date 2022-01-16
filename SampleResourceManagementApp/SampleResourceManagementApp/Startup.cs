@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SampleResourceManagementApp.Localization.LanguageInfos;
 using SampleResourceManagementApp.Localization.LocalizationOptionConfigurations;
+using SampleResourceManagementApp.StartupExtensions;
 
 namespace SampleResourceManagementApp
 {
@@ -21,21 +23,15 @@ namespace SampleResourceManagementApp
 
         public IConfiguration Configuration { get; }
 
-        protected void Configure<TOptions>(Action<TOptions> configureOptions)
-            where TOptions : class
-        {
-            services.Configure(configureOptions);
-        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            Configure<FrameWorkLocalizationOptions>(options =>
-            {
-                options.Languages
-            });
+            services.ConfigureLocalizationServices();
         }
+
+   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
