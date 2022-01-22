@@ -4,6 +4,8 @@ using SampleResourceManagementApp.Localization.LocalizationOptionConfigurations;
 using SampleResourceManagementApp.Localization.LocalizationResources.LocalizationResourceExtensions;
 using SampleResourceManagementApp.Localization.ResourceFiles;
 using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace SampleResourceManagementApp.StartupExtensions
 {
@@ -13,6 +15,13 @@ namespace SampleResourceManagementApp.StartupExtensions
         {
             Configure<WorkLocalizationOption>(services, options =>
             {
+                options.Resources
+                    .Add<SampleResourceManagementAppResource>("en")
+                    .AddBaseTypes(typeof(SampleResourceManagementAppValidationResource), typeof(SampleResourceManagementAppResource))
+                    .AddVirtualJson("/Localization/ResourceFiles/SampleResourceManagementApp");
+
+                options.DefaultResourceType = typeof(SampleResourceManagementAppResource);
+
                 options.Languages.Add(new LanguageInfo("fa", "fa-Ir", "فارسی"));
                 options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
                 options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
@@ -34,12 +43,6 @@ namespace SampleResourceManagementApp.StartupExtensions
                 options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
 
-                options.Resources
-                    .Add<SampleResourceManagementAppResource>("fa")
-                    .AddBaseTypes(typeof(SampleResourceManagementAppValidationResource))
-                    .AddVirtualJson("/Localization/ResourceFiles/SampleResourceManagementApp");
-
-                options.DefaultResourceType = typeof(SampleResourceManagementAppResource);
             });
         }
 
@@ -47,6 +50,16 @@ namespace SampleResourceManagementApp.StartupExtensions
             where TOptions : class
         {
             services.Configure(configureOptions);
+        }
+
+        public static IApplicationBuilder UseAbpRequestLocalization(this IApplicationBuilder app,
+            Action<RequestLocalizationOptions> optionsAction = null)
+        {
+            app.ApplicationServices
+                .GetRequiredService<IAbpRequestLocalizationOptionsProvider>()
+                .InitLocalizationOptions(optionsAction);
+
+            return app.UseMiddleware<AbpRequestLocalizationMiddleware>();
         }
     }
 }
