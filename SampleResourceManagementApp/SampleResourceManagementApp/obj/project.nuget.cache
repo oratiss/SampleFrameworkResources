@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cQC9tXxRBFzxOSH/1nAgfW/XqZbZv3oOC+W++T/IMn+6b6A9Jj/DJqm5qvXT7eXRp2sLDHJL1Kycd01Lu0Kp3w==",
+  "dgSpecHash": "Z8wikoiGbrmlX2+oAT7rRvyMhbma48G/uWcBrN7RdEqrF2i8YUn4oUCLeBRMNe9RSM+f987B+9eJ32Ms5MYHyw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\SampleResourceManagementApp\\SampleResourceManagementApp\\SampleResourceManagementApp\\SampleResourceManagementApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\M.Asgarian\\.nuget\\packages\\jetbrains.annotations\\2021.3.0\\jetbrains.annotations.2021.3.0.nupkg.sha512",
     "C:\\Users\\M.Asgarian\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.13\\microsoft.aspnetcore.mvc.razor.extensions.5.0.13.nupkg.sha512",
     "C:\\Users\\M.Asgarian\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.13\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.13.nupkg.sha512",
     "C:\\Users\\M.Asgarian\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.13\\microsoft.aspnetcore.razor.language.5.0.13.nupkg.sha512",

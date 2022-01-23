@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public interface ISettingDefinitionContext
     {

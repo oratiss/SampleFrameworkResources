@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.FileProviders;
+using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.Extensions.FileProviders;
 
 namespace SampleResourceManagementApp.VirtualFileSystem.Embeded
 {

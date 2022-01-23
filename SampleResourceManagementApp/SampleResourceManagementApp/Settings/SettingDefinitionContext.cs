@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using SampleResourceManagementApp.Localization.Dictionaries.DictionariesExtensions;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public class SettingDefinitionContext: ISettingDefinitionContext
 

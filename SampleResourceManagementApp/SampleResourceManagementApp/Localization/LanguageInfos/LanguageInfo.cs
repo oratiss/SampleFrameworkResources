@@ -40,7 +40,6 @@ namespace SampleResourceManagementApp.Localization.LanguageInfos
                 : cultureName;
         }
 
-
     }
 
 }

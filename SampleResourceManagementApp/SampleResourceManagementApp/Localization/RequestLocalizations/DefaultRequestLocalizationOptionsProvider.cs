@@ -1,17 +1,22 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using SampleResourceManagementApp.Localization.LocalizationProvider;
+using SampleResourceManagementApp.Settings;
+using SampleResourceManagementApp.Threading;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using SampleResourceManagementApp.Localization.LocalizationProvider;
-using SampleResourceManagementApp.Threading;
+using Microsoft.AspNetCore.Localization;
+using SampleResourceManagementApp.Localization.LanguageInfos;
+using SampleResourceManagementApp.Localization.LocalizationSettings;
 
 namespace SampleResourceManagementApp.Localization.RequestLocalizations
 {
-    public class DefaultRequestLocalizationOptionsProvider:IRequestLocalizationOptionsProvider
+    public class DefaultRequestLocalizationOptionsProvider : IRequestLocalizationOptionsProvider
     {
 
         private readonly IServiceScopeFactory _serviceProviderFactory;
@@ -65,7 +70,7 @@ namespace SampleResourceManagementApp.Localization.RequestLocalizations
                                 };
 
                             foreach (var configurator in serviceScope.ServiceProvider
-                                .GetRequiredService<IOptions<RequestLocalizationOptions>>()
+                                .GetRequiredService<IOptions<FrameworkRequestLocalizationOptions>>()
                                 .Value.RequestLocalizationOptionConfigurators)
                             {
                                 await configurator(serviceScope.ServiceProvider, options);
@@ -79,6 +84,19 @@ namespace SampleResourceManagementApp.Localization.RequestLocalizations
             }
 
             return _requestLocalizationOptions;
+        }
+
+
+        private static RequestCulture DefaultGetRequestCulture(string defaultLanguage, IReadOnlyList<LanguageInfo> languages)
+        {
+            if (defaultLanguage == null)
+            {
+                var firstLanguage = languages.First();
+                return new RequestCulture(firstLanguage.CultureName, firstLanguage.UiCultureName);
+            }
+
+            var (cultureName, uiCultureName) = LocalizationSettingHelper.ParseLanguageSetting(defaultLanguage);
+            return new RequestCulture(cultureName, uiCultureName);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SampleResourceManagementApp.VirtualFileSystem
 {
-    public interface IVirtualFileProvider:IFileProvider
+    public interface IVirtualFileProvider : IFileProvider
     {
     }
 }

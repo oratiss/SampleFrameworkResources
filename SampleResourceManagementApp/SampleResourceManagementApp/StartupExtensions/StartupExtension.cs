@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using SampleResourceManagementApp.Localization.LanguageInfos;
 using SampleResourceManagementApp.Localization.LocalizationOptionConfigurations;
 using SampleResourceManagementApp.Localization.LocalizationResources.LocalizationResourceExtensions;
+using SampleResourceManagementApp.Localization.RequestLocalizations;
 using SampleResourceManagementApp.Localization.ResourceFiles;
 using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace SampleResourceManagementApp.StartupExtensions
 {
@@ -52,14 +52,14 @@ namespace SampleResourceManagementApp.StartupExtensions
             services.Configure(configureOptions);
         }
 
-        public static IApplicationBuilder UseAbpRequestLocalization(this IApplicationBuilder app,
+        public static IApplicationBuilder UseFrameworkRequestLocalization(this IApplicationBuilder app,
             Action<RequestLocalizationOptions> optionsAction = null)
         {
             app.ApplicationServices
-                .GetRequiredService<IAbpRequestLocalizationOptionsProvider>()
+                .GetRequiredService<IRequestLocalizationOptionsProvider>()
                 .InitLocalizationOptions(optionsAction);
 
-            return app.UseMiddleware<AbpRequestLocalizationMiddleware>();
+            return app.UseMiddleware<IRequestLocalizationMiddleware>();
         }
     }
 }

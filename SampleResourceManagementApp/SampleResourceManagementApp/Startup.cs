@@ -47,7 +47,7 @@ namespace SampleResourceManagementApp
                 app.UseHsts();
             }
 
-            app.UseAbpRequestLocalization();
+            app.UseFrameworkRequestLocalization();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

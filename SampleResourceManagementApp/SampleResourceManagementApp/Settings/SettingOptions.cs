@@ -1,16 +1,16 @@
 ﻿using SampleResourceManagementApp.Localization.Collections;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public class SettingOptions
     {
-        public ITypeLsit<ISettingDefinitionProvider> DefinitionProviders { get; set; }
+        public ITypeList<ISettingDefinitionProvider> DefinitionProviders { get; set; }
         public ITypeList<ISettingValueProvider> ValueProviders { get; }
 
         public SettingOptions()
         {
             DefinitionProviders = new TypeList<ISettingDefinitionProvider>();
-            ValueProviders = TypeList<ISettingValueProvider>();
+            ValueProviders = new TypeList<ISettingValueProvider>();
         }
     }
 }

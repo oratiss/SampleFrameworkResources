@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "JetBrains.Annotations/2021.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/5.0.13": {
         "type": "package",
         "dependencies": {
@@ -261,6 +270,28 @@
     }
   },
   "libraries": {
+    "JetBrains.Annotations/2021.3.0": {
+      "sha512": "Ddxjs5RRjf+c8m9m++WvhW1lz1bqNhsTjWvCLbQN9bvKbkJeR9MhtfNwKgBRRdG2yLHcXFr5Lf7fsvvkiPaDRg==",
+      "type": "package",
+      "path": "jetbrains.annotations/2021.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "jetbrains.annotations.2021.3.0.nupkg.sha512",
+        "jetbrains.annotations.nuspec",
+        "lib/net20/JetBrains.Annotations.dll",
+        "lib/net20/JetBrains.Annotations.xml",
+        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard1.0/JetBrains.Annotations.dll",
+        "lib/netstandard1.0/JetBrains.Annotations.xml",
+        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard2.0/JetBrains.Annotations.dll",
+        "lib/netstandard2.0/JetBrains.Annotations.xml",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml"
+      ]
+    },
     "Microsoft.AspNetCore.Mvc.Razor.Extensions/5.0.13": {
       "sha512": "DwK9l7HFpbnXwCV0hHaAGPPWsTjV+Uf3qgEGwrjcG6imuuXQh+Q782hTyij1PQwj5ABoIeP2Nk66t5M1MoKM7g==",
       "type": "package",
@@ -732,6 +763,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "JetBrains.Annotations >= 2021.3.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.13"
     ]
   },
@@ -774,6 +806,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "JetBrains.Annotations": {
+            "target": "Package",
+            "version": "[2021.3.0, )"
+          },
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",
             "version": "[5.0.13, )"

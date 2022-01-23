@@ -1,7 +1,7 @@
 ﻿using System;
 using SampleResourceManagementApp.Localization.NameValues;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     [Serializable]
     public class SettingValue:NameValue

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public interface ISettingDefinitionManager
     {
-        [NotNull]
-        SettingDefinition Get([NotNull] string name);
+        SettingDefinition Get(string name);
 
         IReadOnlyList<SettingDefinition> GetAll();
 

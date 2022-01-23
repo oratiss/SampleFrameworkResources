@@ -1,11 +1,11 @@
 ﻿#nullable enable
+using SampleResourceManagementApp.Localization.LocalizableStrings;
+using SampleResourceManagementApp.Utilities.Assertions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using SampleResourceManagementApp.Localization.LocalizableStrings;
-using SampleResourceManagementApp.Utilities.Assertions;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public class SettingDefinition
     {
@@ -15,20 +15,20 @@ namespace SampleResourceManagementApp.Localization.Settings
         [NotNull]
         public string Name { get; }
 
-        [NotNull]
-        public ILocalizableString DisplayName
+        public ILocalizableString? DisplayName
         {
             get => _displayName;
             set => _displayName = LocalizationAssertion.NotNull(value, nameof(value));
         }
-        private ILocalizableString _displayName;
+
+        private ILocalizableString? _displayName;
 
         public ILocalizableString? Description { get; set; }
 
         /// <summary>
         /// Default value of the setting.
         /// </summary>
-        public string DefaultValue { get; set; }
+        public string? DefaultValue { get; set; }
 
         /// <summary>
         /// Can clients see this setting and it's value.
@@ -63,9 +63,9 @@ namespace SampleResourceManagementApp.Localization.Settings
 
         public SettingDefinition(
             string name,
-            string defaultValue = null,
-            ILocalizableString displayName = null,
-            ILocalizableString description = null,
+            string? defaultValue = null,
+            ILocalizableString? displayName = null,
+            ILocalizableString? description = null,
             bool isVisibleToClients = false,
             bool isInherited = true,
             bool isEncrypted = false)

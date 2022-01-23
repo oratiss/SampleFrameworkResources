@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using SampleResourceManagementApp.Localization.Dictionaries.DictionariesExtensions;
 using SampleResourceManagementApp.Utilities.Assertions;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 
-namespace SampleResourceManagementApp.Localization.Settings
+namespace SampleResourceManagementApp.Settings
 {
     public class SettingDefinitionManager: ISettingDefinitionManager
     {
@@ -16,9 +17,7 @@ namespace SampleResourceManagementApp.Localization.Settings
 
         protected IServiceProvider ServiceProvider { get; }
 
-        public SettingDefinitionManager(
-            IOptions<SettingOptions> options,
-            IServiceProvider serviceProvider)
+        public SettingDefinitionManager(IOptions<SettingOptions> options, IServiceProvider serviceProvider)
         {
             ServiceProvider = serviceProvider;
             Options = options.Value;
@@ -52,16 +51,14 @@ namespace SampleResourceManagementApp.Localization.Settings
         {
             var settings = new Dictionary<string, SettingDefinition>();
 
-            using (var scope = ServiceProvider.CreateScope())
-            {
-                var providers = Options
-                    .DefinitionProviders
-                    .Select(p => scope.ServiceProvider.GetRequiredService(p) as ISettingDefinitionProvider)
-                    .ToList();
+            using var scope = ServiceProvider.CreateScope();
+            var providers = Options
+                .DefinitionProviders
+                .Select(p => scope.ServiceProvider.GetRequiredService(p) as ISettingDefinitionProvider)
+                .ToList();
 
-                foreach (var provider in providers)
-                    provider.Define(new SettingDefinitionContext(settings));
-            }
+            foreach (var provider in providers)
+                provider.Define(new SettingDefinitionContext(settings));
 
             return settings;
         }
