@@ -9,17 +9,17 @@ namespace SampleResourceManagementApp.Localization.CultureHelpers
 {
     public class CultureHelper
     {
-        public static IDisposable Use([NotNull] string culture, string uiCulture = null)
-        {
-            LocalizationAssertion.NotNull(culture, nameof(culture));
+        //public static IDisposable Use([NotNull] string culture, string uiCulture = null)
+        //{
+        //    LocalizationAssertion.NotNull(culture, nameof(culture));
 
-            return Use(
-                new CultureInfo(culture),
-                uiCulture == null
-                    ? null
-                    : new CultureInfo(uiCulture)
-            );
-        }
+        //    return Use(
+        //        new CultureInfo(culture),
+        //        uiCulture == null
+        //            ? null
+        //            : new CultureInfo(uiCulture)
+        //    );
+        //}
 
         public static IDisposable Use([NotNull] CultureInfo culture, CultureInfo uiCulture = null)
         {
@@ -40,23 +40,23 @@ namespace SampleResourceManagementApp.Localization.CultureHelpers
 
         public static bool IsRtl => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
 
-        public static bool IsValidCultureCode(string cultureCode)
-        {
-            if (string.IsNullOrWhiteSpace(cultureCode))
-            {
-                return false;
-            }
+        //public static bool IsValidCultureCode(string cultureCode)
+        //{
+        //    if (string.IsNullOrWhiteSpace(cultureCode))
+        //    {
+        //        return false;
+        //    }
 
-            try
-            {
-                CultureInfo.GetCultureInfo(cultureCode);
-                return true;
-            }
-            catch (CultureNotFoundException)
-            {
-                return false;
-            }
-        }
+        //    try
+        //    {
+        //        CultureInfo.GetCultureInfo(cultureCode);
+        //        return true;
+        //    }
+        //    catch (CultureNotFoundException)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public static string GetBaseCultureName(string cultureName)
         {

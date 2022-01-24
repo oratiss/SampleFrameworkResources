@@ -25,17 +25,13 @@ namespace SampleResourceManagementApp.Settings
                 .Reverse(SettingValueProviderManager.Providers);
 
             if (setting.Providers.Any())
-            {
                 providers = providers.Where(p => setting.Providers.Contains(p.Name));
-            }
 
             //TODO: How to implement setting.IsInherited?
 
             var value = await GetOrNullValueFromProvidersAsync(providers, setting);
             if (value != null && setting.IsEncrypted)
-            {
                 value = SettingEncryptionService.Decrypt(setting, value);
-            }
 
             return value;
         }
@@ -46,9 +42,7 @@ namespace SampleResourceManagementApp.Settings
             var settingDefinitions = SettingDefinitionManager.GetAll().Where(x => names.Contains(x.Name)).ToList();
 
             foreach (var definition in settingDefinitions)
-            {
                 result.Add(definition.Name, new SettingValue(definition.Name, null));
-            }
 
             foreach (var provider in Enumerable.Reverse(SettingValueProviderManager.Providers))
             {
@@ -59,21 +53,15 @@ namespace SampleResourceManagementApp.Settings
                 {
                     var settingDefinition = settingDefinitions.First(x => x.Name == settingValue.Name);
                     if (settingDefinition.IsEncrypted)
-                    {
                         settingValue.Value = SettingEncryptionService.Decrypt(settingDefinition, settingValue.Value);
-                    }
 
                     if (result.ContainsKey(settingValue.Name) && result[settingValue.Name].Value == null)
-                    {
                         result[settingValue.Name].Value = settingValue.Value;
-                    }
                 }
 
                 settingDefinitions.RemoveAll(x => notNullValues.Any(v => v.Name == x.Name));
                 if (!settingDefinitions.Any())
-                {
                     break;
-                }
             }
 
             return result.Values.ToList();
@@ -100,9 +88,7 @@ namespace SampleResourceManagementApp.Settings
             {
                 var value = await provider.GetOrNullAsync(setting);
                 if (value != null)
-                {
                     return value;
-                }
             }
 
             return null;

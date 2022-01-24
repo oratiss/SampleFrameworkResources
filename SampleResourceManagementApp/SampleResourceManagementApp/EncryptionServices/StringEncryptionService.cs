@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.Extensions.Options;
 
 namespace SampleResourceManagementApp.EncryptionServices
 {
@@ -18,19 +18,13 @@ namespace SampleResourceManagementApp.EncryptionServices
         public virtual string Encrypt(string plainText, string passPhrase = null, byte[] salt = null)
         {
             if (plainText == null)
-            {
                 return null;
-            }
 
             if (passPhrase == null)
-            {
                 passPhrase = Options.DefaultPassPhrase;
-            }
 
             if (salt == null)
-            {
                 salt = Options.DefaultSalt;
-            }
 
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
             using (var password = new Rfc2898DeriveBytes(passPhrase, salt))
@@ -61,11 +55,9 @@ namespace SampleResourceManagementApp.EncryptionServices
             if (string.IsNullOrEmpty(cipherText))
                 return null;
 
-            if (passPhrase == null)
-                passPhrase = Options.DefaultPassPhrase;
+            passPhrase ??= Options.DefaultPassPhrase;
 
-            if (salt == null)
-                salt = Options.DefaultSalt;
+            salt ??= Options.DefaultSalt;
 
             var cipherTextBytes = Convert.FromBase64String(cipherText);
             using (var password = new Rfc2898DeriveBytes(passPhrase, salt))

@@ -21,8 +21,6 @@ namespace SampleResourceManagementApp.Localization.LocalizationSettings
 
             var splitted = settingValue.Split(';');
             return (splitted[0], splitted[1]);
-
-
         }
     }
 }

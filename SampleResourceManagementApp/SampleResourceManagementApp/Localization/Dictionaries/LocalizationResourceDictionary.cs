@@ -7,9 +7,9 @@ namespace SampleResourceManagementApp.Localization.Dictionaries
 {
     public class LocalizationResourceDictionary: Dictionary<Type, LocalizationResource>
     {
-        public LocalizationResource Add<TResouce>(string defaultCultureName = null)
+        public LocalizationResource Add<TResource>(string defaultCultureName = null)
         {
-            return Add(typeof(TResouce), defaultCultureName);
+            return Add(typeof(TResource), defaultCultureName);
         }
 
         public LocalizationResource Add(Type resourceType, string defaultCultureName = null)
@@ -22,8 +22,8 @@ namespace SampleResourceManagementApp.Localization.Dictionaries
 
         public LocalizationResource Get<TResource>()
         {
-            Type typeFromHandle = typeof(TResource);
-            return this.GetOrDefault(typeFromHandle) ?? throw new Exception("Can not find a resource with given type: " + typeFromHandle.AssemblyQualifiedName);
+            Type resourceType = typeof(TResource);
+            return this.GetOrDefault(resourceType) ?? throw new Exception("Can not find a resource with given type: " + resourceType.AssemblyQualifiedName);
         }
     }
 }

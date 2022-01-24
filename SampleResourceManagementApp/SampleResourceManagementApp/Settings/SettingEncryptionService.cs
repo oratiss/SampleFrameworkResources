@@ -13,20 +13,12 @@ namespace SampleResourceManagementApp.Settings
 
         public virtual string Encrypt(SettingDefinition settingDefinition, string plainValue)
         {
-            if (string.IsNullOrEmpty(plainValue))
-            {
-                return plainValue;
-            }
-
-            return StringEncryptionService.Encrypt(plainValue);
+            return string.IsNullOrEmpty(plainValue) ? plainValue : StringEncryptionService.Encrypt(plainValue);
         }
 
         public virtual string Decrypt(SettingDefinition settingDefinition, string encryptedValue)
         {
-            if (string.IsNullOrEmpty(encryptedValue))
-                return encryptedValue;
-
-            return StringEncryptionService.Decrypt(encryptedValue);
+            return string.IsNullOrEmpty(encryptedValue) ? encryptedValue : StringEncryptionService.Decrypt(encryptedValue);
         }
     }
 }

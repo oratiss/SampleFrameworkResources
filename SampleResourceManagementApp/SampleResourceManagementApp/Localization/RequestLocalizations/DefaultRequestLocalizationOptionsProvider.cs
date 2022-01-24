@@ -63,9 +63,9 @@ namespace SampleResourceManagementApp.Localization.RequestLocalizations
                                         .ToArray(),
 
                                     SupportedUICultures = languages
-                                        .Select(l => l.UiCultureName)
+                                        .Select(languageInfo => languageInfo.UiCultureName)
                                         .Distinct()
-                                        .Select(c => new CultureInfo(c))
+                                        .Select(culture => new CultureInfo(culture))
                                         .ToArray()
                                 };
 

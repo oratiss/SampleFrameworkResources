@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using SampleResourceManagementApp.Localization.Dictionaries.DictionariesExtensions;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using SampleResourceManagementApp.Localization.Dictionaries.DictionariesExtensions;
 
 namespace SampleResourceManagementApp.Settings
 {
-    public class SettingDefinitionContext: ISettingDefinitionContext
+    public class SettingDefinitionContext : ISettingDefinitionContext
 
     {
         protected Dictionary<string, SettingDefinition> Settings { get; }
