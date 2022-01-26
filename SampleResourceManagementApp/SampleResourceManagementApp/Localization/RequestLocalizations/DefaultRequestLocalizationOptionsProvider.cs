@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using SampleResourceManagementApp.Localization.LanguageInfos;
 using SampleResourceManagementApp.Localization.LocalizationProvider;
+using SampleResourceManagementApp.Localization.LocalizationSettings;
 using SampleResourceManagementApp.Settings;
 using SampleResourceManagementApp.Threading;
 using System;
@@ -10,9 +13,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Localization;
-using SampleResourceManagementApp.Localization.LanguageInfos;
-using SampleResourceManagementApp.Localization.LocalizationSettings;
 
 namespace SampleResourceManagementApp.Localization.RequestLocalizations
 {

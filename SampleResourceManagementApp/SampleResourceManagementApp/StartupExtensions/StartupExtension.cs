@@ -6,6 +6,10 @@ using SampleResourceManagementApp.Localization.LocalizationResources.Localizatio
 using SampleResourceManagementApp.Localization.RequestLocalizations;
 using SampleResourceManagementApp.Localization.ResourceFiles;
 using System;
+using SampleResourceManagementApp.EncryptionServices;
+using SampleResourceManagementApp.Localization.LocalizableStrings;
+using SampleResourceManagementApp.Localization.NameValues;
+using SampleResourceManagementApp.Settings;
 
 namespace SampleResourceManagementApp.StartupExtensions
 {
@@ -13,15 +17,34 @@ namespace SampleResourceManagementApp.StartupExtensions
     {
         public static void ConfigureLocalizationServices(this IServiceCollection services)
         {
+
+
+            services.AddTransient<ILocalizableString, LocalizableString>();
+            services.AddTransient<ILocalizableString, FixedLocalizableString>();
+            services.AddTransient<ISettingDefinition, SettingDefinition>();
+            services.AddTransient<ISettingEncryptionService, SettingEncryptionService>();
+            services.AddTransient<ISettingDefinitionProvider, SettingDefinitionProvider>();
+            services.AddTransient<ISettingDefinitionManager, SettingDefinitionManager>();
+            services.AddScoped<NameValue<string>>();
+            services.AddScoped<NameValue>();
+            services.AddScoped<SettingValue>();
+
+            services.AddTransient<ISettingValueProvider, SettingValueProvider>();
+            services.AddTransient<ISettingValueProvider, DefaultValueSettingValueProvider>();
+            services.AddTransient<ISettingProvider, SettingProvider>();
+
+            services.AddSingleton<SettingValueProviderManager,SettingValueProviderManager>();
+            services.AddTransient<ISettingDefinitionContext, SettingDefinitionContext>();
+            services.AddTransient<IStringEncryptionService, StringEncryptionService>();
+
+
+
+           
+
+
+
             Configure<WorkLocalizationOption>(services, options =>
             {
-                options.Resources
-                    .Add<SampleResourceManagementAppResource>("en")
-                    .AddBaseTypes(typeof(SampleResourceManagementAppValidationResource), typeof(SampleResourceManagementAppResource))
-                    .AddVirtualJson("/Localization/ResourceFiles/SampleResourceManagementApp");
-
-                options.DefaultResourceType = typeof(SampleResourceManagementAppResource);
-
                 options.Languages.Add(new LanguageInfo("fa", "fa-Ir", "فارسی"));
                 options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
                 options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
@@ -43,6 +66,13 @@ namespace SampleResourceManagementApp.StartupExtensions
                 options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
 
+                options.DefaultResourceType = typeof(SampleResourceManagementAppResource);
+
+                options.Resources
+                    .Add<SampleResourceManagementAppResource>("en")
+                    .AddBaseTypes(typeof(SampleResourceManagementAppValidationResource), typeof(SampleResourceManagementAppResource))
+                    .AddVirtualJson("/Localization/ResourceFiles/SampleResourceManagementApp");
+
             });
         }
 
@@ -59,7 +89,7 @@ namespace SampleResourceManagementApp.StartupExtensions
                 .GetRequiredService<IRequestLocalizationOptionsProvider>()
                 .InitLocalizationOptions(optionsAction);
 
-            return app.UseMiddleware<IRequestLocalizationMiddleware>();
+            return app.UseMiddleware<RequestLocalizationMiddleware>();
         }
     }
 }

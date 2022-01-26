@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SampleResourceManagementApp.Settings
 {
-    public class SettingDefinition
+    public class SettingDefinition : ISettingDefinition
     {
         /// <summary>
         /// Unique name of the setting.
